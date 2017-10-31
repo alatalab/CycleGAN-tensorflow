@@ -14,6 +14,7 @@ class cyclegan(object):
     def __init__(self, sess, args):
         self.sess = sess
         self.batch_size = args.batch_size
+        self.load_size =args.load_size
         self.image_size = args.fine_size
         self.input_c_dim = args.input_nc
         self.output_c_dim = args.output_nc
@@ -132,11 +133,10 @@ class cyclegan(object):
         counter = 1
         start_time = time.time()
 
-        if args.continue_train:
-            if self.load(args.checkpoint_dir):
-                print(" [*] Load SUCCESS")
-            else:
-                print(" [!] Load failed...")
+        if args.continue_train and self.load(args.checkpoint_dir):
+            print(" [*] Load SUCCESS")
+        else:
+            print(" [!] prev training load failed...")
 
         for epoch in range(args.epoch):
             dataA = glob('./datasets/{}/*.*'.format(self.dataset_dir + '/trainA'))
@@ -149,7 +149,7 @@ class cyclegan(object):
             for idx in range(0, batch_idxs):
                 batch_files = list(zip(dataA[idx * self.batch_size:(idx + 1) * self.batch_size],
                                        dataB[idx * self.batch_size:(idx + 1) * self.batch_size]))
-                batch_images = [load_train_data(batch_file, args.load_size, args.fine_size) for batch_file in batch_files]
+                batch_images = [load_train_data(batch_file, self.load_size, self.image_size) for batch_file in batch_files]
                 batch_images = np.array(batch_images).astype(np.float32)
 
                 # Update G network and record fake outputs
@@ -210,9 +210,9 @@ class cyclegan(object):
         np.random.shuffle(dataA)
         np.random.shuffle(dataB)
         batch_files = list(zip(dataA[:self.batch_size], dataB[:self.batch_size]))
-        sample_images = [load_train_data(batch_file, is_testing=True) for batch_file in batch_files]
+        sample_images = [load_train_data(batch_file, self.load_size, self.image_size,is_testing=True) for batch_file in batch_files]
         sample_images = np.array(sample_images).astype(np.float32)
-
+        print(sample_images.shape)
         fake_A, fake_B = self.sess.run(
             [self.fake_A, self.fake_B],
             feed_dict={self.real_data: sample_images}
@@ -249,7 +249,7 @@ class cyclegan(object):
 
         for sample_file in sample_files:
             print('Processing image: ' + sample_file)
-            sample_image = [load_test_data(sample_file, args.fine_size)]
+            sample_image = [load_test_data(sample_file, self.image_size)]
             sample_image = np.array(sample_image).astype(np.float32)
             image_path = os.path.join(args.test_dir,
                                       '{0}_{1}'.format(args.which_direction, os.path.basename(sample_file)))

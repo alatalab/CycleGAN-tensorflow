@@ -44,9 +44,10 @@ def load_test_data(image_path, fine_size=256):
     img = img/127.5 - 1
     return img
 
-def load_train_data(image_path, load_size=286, fine_size=256, is_testing=False):
+def load_train_data(image_path, load_size=512, fine_size=256, is_testing=False):
     img_A = imread(image_path[0])
     img_B = imread(image_path[1])
+    
     if not is_testing:
         img_A = scipy.misc.imresize(img_A, [load_size, load_size])
         img_B = scipy.misc.imresize(img_B, [load_size, load_size])
@@ -61,7 +62,7 @@ def load_train_data(image_path, load_size=286, fine_size=256, is_testing=False):
     else:
         img_A = scipy.misc.imresize(img_A, [fine_size, fine_size])
         img_B = scipy.misc.imresize(img_B, [fine_size, fine_size])
-
+   
     img_A = img_A/127.5 - 1.
     img_B = img_B/127.5 - 1.
 
