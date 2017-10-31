@@ -7,12 +7,11 @@
 Tensorflow implementation for learning an image-to-image translation **without** input-output pairs.
 The method is proposed by [Jun-Yan Zhu](https://people.eecs.berkeley.edu/~junyanz/) in 
 [Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networkssee](https://arxiv.org/pdf/1703.10593.pdf). 
-For example in paper:
 
 
 
 
-# This is modified model for human<->map
+# This is modified code for human<->map
 <img src="imgs/faces.jpg" width="764px">
 
 Every human face is unique and complicated, so as a city.
