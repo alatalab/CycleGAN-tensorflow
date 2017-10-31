@@ -23,5 +23,5 @@ Faces database - custom big face crops from celebA, map databases - cities with 
 
 Changes added by Sergei to original code and model - skip-connection, low L1 (cycle loss), bug fixing, depth2space instead of deconv.
 
-Map of Vladivostok 
+## Map of Vladivostok 
 <img src="imgs/vladik.jpg" width="386px">
