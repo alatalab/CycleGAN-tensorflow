@@ -12,11 +12,16 @@ For example in paper:
 <img src="imgs/teaser.jpg" width="1000px"/>
 
 
-This is modified model for human<->map
 
-Every human is unique and complicated, so as a city.
+# This is modified model for human<->map
+<img src="imgs/faces.jpg" width="764px">
 
-Human database - custom big face crops from celebA, map databases - cities with population >10k on Google Maps.
+Every human face is unique and complicated, so as a city.
+
+Faces database - custom big face crops from celebA, map databases - cities with population >10k on Google Maps.
 
 
-Changes added by Sergei to original model - skip-connection, low L1 (cycle), bug fixing, depth2space instead of deconv.
+Changes added by Sergei to original code and model - skip-connection, low L1 (cycle loss), bug fixing, depth2space instead of deconv.
+
+Map of Vladivostok 
+<img src="imgs/vladik.jpg" width="386px">
