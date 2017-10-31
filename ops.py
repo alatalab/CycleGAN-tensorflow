@@ -28,9 +28,10 @@ def conv2d(input_, output_dim, ks=4, s=2, stddev=0.02, padding='SAME', name="con
 
 def deconv2d(input_, output_dim, ks=4, s=2, stddev=0.02, name="deconv2d"):
     with tf.variable_scope(name):
-        return slim.conv2d_transpose(input_, output_dim, ks, s, padding='SAME', activation_fn=None,
-                                    weights_initializer=tf.truncated_normal_initializer(stddev=stddev),
-                                    biases_initializer=None)
+        return tf.depth2space(input_,block_size=s)
+       # return slim.conv2d_transpose(input_, output_dim, ks, s, padding='SAME', activation_fn=None,
+        #                            weights_initializer=tf.truncated_normal_initializer(stddev=stddev),
+       #                             biases_initializer=None)
 
 def lrelu(x, leak=0.2, name="lrelu"):
     return tf.maximum(x, leak*x)
