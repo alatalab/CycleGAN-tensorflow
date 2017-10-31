@@ -14,7 +14,7 @@ The method is proposed by [Jun-Yan Zhu](https://people.eecs.berkeley.edu/~junyan
 # This is modified code for human<->map
 <img src="imgs/faces.jpg" width="764px">
 
-Every human face is unique and complicated, so as a city.
+Every human face is unique and complicated, so as every city.
 
 Faces database - custom big face crops from celebA, map databases - cities with population >10k on Google Maps.
 
